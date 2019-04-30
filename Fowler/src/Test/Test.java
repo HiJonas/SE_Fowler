@@ -12,9 +12,7 @@ public class Test {
 	public void TestAmountFor5DaysRegular(){
 		Movie mov = new Movie("Titel1", 0);
 		Rental rentalMov = new Rental(mov, 5);
-		Customer cust = new Customer("Name1");
-		cust.addRental(rentalMov);
-		assertEquals(6.5, cust.amountFor(rentalMov), 0.0001);
+		assertEquals(6.5, rentalMov.amountFor(), 0.0001);
 	}
 	
 	@org.junit.Test
