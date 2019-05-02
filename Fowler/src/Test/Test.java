@@ -4,13 +4,14 @@ import static org.junit.Assert.*;
 
 import Application.Customer;
 import Application.Movie;
+import Application.Price;
 import Application.Rental;
 
 public class Test {
 
 	@org.junit.Test
 	public void TestAmountFor5DaysRegular(){
-		Movie mov = new Movie("Titel1", 0);
+		Movie mov = new Movie("Titel1", Price.REGULAR);
 		Rental rentalMov = new Rental(mov, 5);
 		assertEquals(6.5, rentalMov.amountFor(), 0.0001);
 	}
@@ -28,7 +29,7 @@ public class Test {
 	
 	@org.junit.Test
 	public void TestCustomerStatementOneRentals(){;
-		Movie mov = new Movie("Titel1", 0);
+		Movie mov = new Movie("Titel1", Price.REGULAR);
 		Rental rentalMov = new Rental(mov, 5);
 		Customer cust = new Customer("Name1");
 		cust.addRental(rentalMov);

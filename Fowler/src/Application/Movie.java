@@ -4,16 +4,16 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
     private String title;
-    private int priceCode;
-    public Movie(String newtitle, int newpriceCode) {
+    private Price priceCode;
+    public Movie(String newtitle, Price newPriceCode) {
         title = newtitle;
-        priceCode = newpriceCode;
+        setPriceCode(newPriceCode);
     }
-    public int getPriceCode() {
+    public Price getPriceCode() {
         return priceCode;
     }
-    public void setPriceCode(int arg) {
-        priceCode = arg;
+    public void setPriceCode(Price arg) {
+    	priceCode = arg;
     }
     public String getTitle (){
         return title;
@@ -22,15 +22,15 @@ public class Movie {
     public double amountFor(int daysRented) {
         double sum = 0;
         switch (priceCode) {
-            case Movie.REGULAR:
+            case REGULAR:
                 sum += 2;
                 if (daysRented > 2)
                     sum += (daysRented - 2) * 1.5;
                 break;
-            case Movie.NEW_RELEASE:
+            case NEW_RELEASE:
                 sum += daysRented * 3;
                 break;
-            case Movie.CHILDRENS:
+            case CHILDRENS:
                 sum += 1.5;
                 if (daysRented> 3)
                     sum += (daysRented- 3) * 1.5;
