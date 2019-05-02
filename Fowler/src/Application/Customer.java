@@ -16,30 +16,33 @@ public class Customer {
         return name;
     };
     public String statement() {
-        double totalSum = 0;
         int frequentRenterPoints = 0;
         Enumeration<Rental> enum_rentals = rentals.elements();	    
         String statement = "Rental Record for " + this.getName() + "\n";
         statement += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
         while (enum_rentals.hasMoreElements()) {
-            Rental currentRental = enum_rentals.nextElement();
-            
-            //determine amounts for each line
-            frequentRenterPoints += currentRental.getFrequentPoints(frequentRenterPoints);
-            
+            Rental currentRental = enum_rentals.nextElement();           
+            frequentRenterPoints += currentRental.getFrequentPoints(frequentRenterPoints);            
             //show figures for this rental
-            statement += "\t" + currentRental.getMovie().getTitle()+ "\t" + "\t" + currentRental.getDaysRented() + "\t" + String.valueOf(currentRental.amountFor()) + "\n";
-            totalSum += currentRental.amountFor();
+            statement += "\t" + currentRental.getMovie().getTitle()+ "\t" + "\t" + currentRental.getDaysRented() + "\t" + currentRental.amountFor() + "\n";
         }
         //add footer lines
-        statement += "Amount owed is " + String.valueOf(totalSum) + "\n";
+        statement += "Amount owed is " + calcOwedAmount() + "\n";
         statement += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return statement;
     }
-	
-
     
+	private double calcOwedAmount() {
+		double totalSum = 0;
+        Enumeration<Rental> enum_rentals = rentals.elements();
+        while (enum_rentals.hasMoreElements()) {
+        	Rental currentRental = enum_rentals.nextElement();
+            totalSum += currentRental.amountFor();
+        }
+        return totalSum;
+		
+	}
 
 }
     
