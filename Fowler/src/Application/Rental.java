@@ -13,25 +13,7 @@ public class Rental {
         return movie;
     }
     
-    public double amountFor() {
-        double sum = 0;
-        switch (movie.getPriceCode()) {
-            case Movie.REGULAR:
-                sum += 2;
-                if (daysRented > 2)
-                    sum += (daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                sum += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                sum += 1.5;
-                if (daysRented> 3)
-                    sum += (daysRented- 3) * 1.5;
-                break;
-        }
-        return sum;
-    }
+   
     
     public int getFrequentPoints(int frequentRenterPoints) {
 		// add frequent renter points
@@ -40,5 +22,9 @@ public class Rental {
 		if ((movie.getPriceCode() == Movie.NEW_RELEASE) && daysRented> 1) 
 		    frequentRenterPoints ++;
 		return frequentRenterPoints;
+	}
+    
+	public double amountFor() {
+		return movie.amountFor(daysRented);
 	}
 }
